@@ -19,6 +19,7 @@ import { useAgentStore } from '@/store/agent';
 import { agentSelectors, builtinAgentSelectors } from '@/store/agent/selectors';
 import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
+import { inboxDisplayName } from '@/utils/inboxDisplayName';
 
 export interface AgentRow {
   avatar?: string;
@@ -110,7 +111,7 @@ export const useHomeAgentRows = (): HomeAgentRows => {
           DEFAULT_INBOX_AVATAR,
         backgroundColor: inboxMeta?.backgroundColor || undefined,
         id: inboxAgentId,
-        title: agentDisplayName(inboxMeta, 'Lobe AI'),
+        title: inboxDisplayName(inboxMeta),
       });
     }
     workspaceRows.push(

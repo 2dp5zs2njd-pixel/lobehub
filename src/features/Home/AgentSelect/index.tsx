@@ -16,6 +16,7 @@ import { agentSelectors, builtinAgentSelectors } from '@/store/agent/selectors';
 import { useGlobalStore } from '@/store/global';
 import { useHomeStore } from '@/store/home';
 import { homeAgentListSelectors } from '@/store/home/selectors';
+import { inboxDisplayName } from '@/utils/inboxDisplayName';
 
 import AgentList from './AgentList';
 import { useResolvedHomeAgentId } from './useResolvedHomeAgentId';
@@ -68,10 +69,9 @@ const AgentSelect = memo(() => {
   const agentMapMeta = useAgentStore(agentSelectors.getAgentMetaById(displayAgentId));
   const showInboxFallback = isInbox || !resolvedAgentId;
   const displayMeta = showInboxFallback ? inboxMeta : (sidebarItem ?? agentMapMeta);
-  const displayTitle = agentDisplayName(
-    displayMeta,
-    showInboxFallback ? 'Lobe AI' : t('defaultSession', { ns: 'common' }),
-  );
+  const displayTitle = showInboxFallback
+    ? inboxDisplayName(inboxMeta)
+    : agentDisplayName(displayMeta, t('defaultSession', { ns: 'common' }));
   const displayAvatar =
     (typeof displayMeta?.avatar === 'string' ? displayMeta.avatar : undefined) ||
     (showInboxFallback ? DEFAULT_INBOX_AVATAR : DEFAULT_AVATAR);
