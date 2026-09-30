@@ -42,6 +42,8 @@ const stateToFileName: Record<FaviconState, string> = {
 };
 
 const getFaviconPath = (state: FaviconState, isDev: boolean, size?: '32x32'): string => {
+  if (state === 'default') return '/ek-logo.png';
+
   const devSuffix = isDev ? '-dev' : '';
   const stateSuffix = stateToFileName[state];
   const sizeSuffix = size ? `-${size}` : '';

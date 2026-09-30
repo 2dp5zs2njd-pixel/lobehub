@@ -13,8 +13,6 @@ import { translation } from '@/libs/i18n/serverTranslation';
 import { type DynamicLayoutProps } from '@/types/next';
 import { RouteVariants } from '@/utils/server/routeVariants';
 
-const isDev = process.env.NODE_ENV === 'development';
-
 export const generateMetadata = async (props: DynamicLayoutProps) => {
   const locale = await RouteVariants.getLocale(props);
   const { t } = await translation('metadata', locale);
@@ -31,9 +29,9 @@ export const generateMetadata = async (props: DynamicLayoutProps) => {
     icons: isCustomBranding
       ? BRANDING_LOGO_URL
       : {
-          apple: '/apple-touch-icon.png?v=1',
-          icon: isDev ? '/favicon-dev.ico' : '/favicon.ico?v=1',
-          shortcut: isDev ? '/favicon-32x32-dev.ico' : '/favicon-32x32.ico?v=1',
+          apple: '/ek-logo.png?v=1',
+          icon: '/ek-logo.png?v=1',
+          shortcut: '/ek-logo.png?v=1',
         },
     ...(APPLE_APP_STORE_ID ? { itunes: { appId: APPLE_APP_STORE_ID } } : {}),
     manifest: '/manifest.json',
